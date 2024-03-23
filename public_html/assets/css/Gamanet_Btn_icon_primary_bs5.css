@@ -1,0 +1,51 @@
+.gamanet-btn-icon-primary {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  outline: none;
+  border: none !important;
+  background: #57f420;
+}
+
+.gamanet-btn-icon-primary:hover {
+  background: #32e605;
+}
+
+.gamanet-btn-icon-primary:focus, .gamanet-btn-icon-primary:active {
+  outline: 0.25rem solid #F9E7D8 !important;
+  background: #71f420;
+}
+
+.gamanet-btn-icon-primary:disabled, .gamanet-btn-icon-primary.disabled {
+  background-color: #EAE9E9 !important;
+  pointer-events: none;
+}
+
+.gamanet-btn-icon-primary:disabled img, .gamanet-btn-icon-primary.disabled img {
+  filter: invert(78%) sepia(43%) saturate(13%) hue-rotate(349deg) brightness(90%) contrast(90%);
+}
+
+.gamanet-btn-icon-primary.sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.gamanet-btn-icon-primary.xsm {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.gamanet-btn-icon-primary img {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.gamanet-btn-icon-primary.sm img, .gamanet-btn-icon-primary.xsm img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
