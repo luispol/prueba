@@ -32,6 +32,7 @@
                                     <button class="btn btn-primary btn-sm float-end" style="height: 35px;width: 115px;margin-top: 0px;margin-bottom: -1px;padding-left: 0px;padding-right: 0px; background-color:red; border-color:red;" id="btnAgregar">Registrar&nbsp;</button>
                                 </div>
                             </div>
+
                             <div class="card-body mt-3" style="height: auto;">
                                 <div class="table-responsive flex-grow-0 flex-shrink-0 table" id="contentTable" role="grid" aria-describedby="dataTable_info" style="width: auto;margin: auto;margin-left: 0px;margin-right: 0px;display: block;position: static;">
                                     <table class="table table-borderless my-0" id="dataTable">
@@ -67,18 +68,29 @@
                         <br>
                         <br>
                         <br>
-                        <div id="mapaResumen" class="row">
-                            <iframe frameborder="0" width="100%" height="400"
+                        <div id="map" class="row"></div>
+                        <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",
+                        q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),
+                        r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>
+                        {await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.
+                            set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);
+                            a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."))
+                            ;a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+                            ({key: "AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I", v: "weekly"});</script>
+
+
+
+                            <!--<iframe frameborder="0" width="100%" height="400"
                                 width="600"
                                 height="450"
                                 style="border:0"
                                 loading="lazy"
                                 allowfullscreen
                                 referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I
                                     &q=Space+Needle,Seattle+WA">
-                            </iframe>
-                        </div>
+                            </iframe>-->
+                       <!-- </div>-->
                     </div>
                     <div class="container-fluid d-none" id="contentForm">
                         <h3 class="text-dark mb-4">Crear - Registro de Restaurante</h3>
@@ -99,7 +111,7 @@
                                                     <div class="col" style="width: auto;">
                                                         <div class="mb-3"><label class="form-label"><strong>Nombre del restaurante:&nbsp;<span style="color: rgb(24, 27, 69);">*</span></strong></label>
                                                         <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Restaurante" required></div>
-                                                        <input type="hidden" name="id_restaurante" id="id_restaurante" value="0">
+                                                        <input type="hidden" name="idrestaurante" id="idrestaurante" value="0">
                                                     </div>
                                                     <div class="col" style="padding-top: 20px;width: auto;">
                                                         <div class="row align-items-center no-gutters">
@@ -162,16 +174,17 @@
                         <br>
                         <br>
                         <div id="mapaForm" class="row">
-                            <iframe frameborder="0" width="100%" height="400"
+                            <!--<iframe frameborder="0"
                                 width="600"
                                 height="450"
                                 style="border:0"
                                 loading="lazy"
                                 allowfullscreen
                                 referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I
                                     &q=Space+Needle,Seattle+WA">
-                             </iframe>
+                             </iframe>-->
+                             <iframe width="600" height="450" style="border:0" Loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=El%20Salvador&key=AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I"></iframe>
                         </div>
                     </div>
                 </div>

@@ -12,11 +12,11 @@ class Api{
         return json;
     }
 
-    /*async get(url){
+    async get(url){
         const query = await fetch(`${BASE_API}${url}`);
         const json = await query.json();
         return json;
-    }*/
+    }
 
 
 

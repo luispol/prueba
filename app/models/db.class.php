@@ -18,6 +18,23 @@
             return $this->isConnected;
         }
 
+
+        public function executeQuery($query) {
+            $result=$this->conexion->query($query);
+            echo $this->conexion->error;
+            $records=array();
+            while ($record=$result->fetch_assoc()) {
+                $records[]=$record;
+            }
+            return $records;
+        }
+
+        public function executeInsert($query){
+            $result=$this->conexion->query($query);
+            echo $this->conexion->error;
+            return $this->conexion->insert_id;
+        }
+
     }
 
 
