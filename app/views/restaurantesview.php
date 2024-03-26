@@ -65,10 +65,10 @@
                                 </div>
                             </div>
                         </div>
+                        <!--<br>
                         <br>
                         <br>
-                        <br>
-                        <div id="map" class="row"></div>
+                        <div id="map" style="width: 100%; height:500px;"></div>
                         <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",
                         q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),
                         r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>
@@ -76,21 +76,11 @@
                             set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);
                             a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."))
                             ;a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-                            ({key: "AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I", v: "weekly"});</script>
+                            ({key: "AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I", v: "weekly"});</script>-->
 
 
 
-                            <!--<iframe frameborder="0" width="100%" height="400"
-                                width="600"
-                                height="450"
-                                style="border:0"
-                                loading="lazy"
-                                allowfullscreen
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I
-                                    &q=Space+Needle,Seattle+WA">
-                            </iframe>-->
-                       <!-- </div>-->
+                        
                     </div>
                     <div class="container-fluid d-none" id="contentForm">
                         <h3 class="text-dark mb-4">Crear - Registro de Restaurante</h3>
@@ -170,24 +160,32 @@
                             </div>
                         </div> 
                         
-                        <br>
-                        <br>
-                        <br>
-                        <div id="mapaForm" class="row">
-                            <!--<iframe frameborder="0"
-                                width="600"
-                                height="450"
-                                style="border:0"
-                                loading="lazy"
-                                allowfullscreen
-                                referrerpolicy="no-referrer-when-downgrade"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I
-                                    &q=Space+Needle,Seattle+WA">
-                             </iframe>-->
-                             <iframe width="600" height="450" style="border:0" Loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=El%20Salvador&key=AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I"></iframe>
-                        </div>
+                        
                     </div>
+
+                    
                 </div>
+                <!--<br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div>
+                    <h1>Hola</h1>
+                </div>-->
+                <br>
+                        <br>
+                        <br>
+                        <div id="map" style="width: 100%; height:500px;"></div>
+                        <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",
+                        q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),
+                        r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>
+                        {await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.
+                            set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);
+                            a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."))
+                            ;a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+                            ({key: "AIzaSyCPKvPHu2qiRwMbrwzolMEjzLP7RIRnU0I", v: "weekly"});</script>
+
                 
             </div>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>

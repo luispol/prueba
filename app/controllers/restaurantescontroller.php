@@ -43,6 +43,22 @@
             echo json_encode($info);
         }
 
+        public function getOneRestaurante(){
+            $records=$this->restaurante->getOneRestaurante($_GET["id"]);
+            if (count($records)>0) {
+                $info=array('success'=>true,'records'=>$records);
+            }else {
+                $info=array('success'=>false,'msg'=>"El restaurante no existe");
+            }
+            echo json_encode($info);
+        }
+
+        public function deleteRestaurante() {
+            $records=$this->restaurante->deleteRestaurante($_GET["id"]);
+            $info=array('success'=>true,'msg'=>"Restaurante eliminado con exito");
+            echo json_encode($info);
+        }
+
     }
 
 

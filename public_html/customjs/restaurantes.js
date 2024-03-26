@@ -10,6 +10,7 @@ const inputFoto=document.querySelector("#foto");
 const API = new Api();
 let dataTable;
 let map;
+let markers = [];
 
 //Configuracion de eventos
 eventListeners();
@@ -23,7 +24,7 @@ function eventListeners() {
     divFoto.addEventListener("click",agregarFoto);
     inputFoto.addEventListener("change",actualizarFoto);
     formSolicitantes.addEventListener("submit",guardarRestaurante);
-    initMap();
+    //document.addEventListener("DOMContentLoaded",initMap);
 }
 
 //Funciones
@@ -36,6 +37,7 @@ function limpiarForm(op) {
 function agregarRestaurante() {
     panelDatos.classList.add("d-none");
     panelForm.classList.remove("d-none");
+    
 }
 
 function cancelarRestaurante() {
@@ -49,6 +51,7 @@ function cargarDatos() {
         data=>{
             if (data.success) {
                 crearTabla(data.records);
+                initMap(data.records);
             }else{
                 console.error("Error al recuperar registros");
             }
@@ -153,6 +156,7 @@ function guardarRestaurante(event) {
                 // Recargar solo los datos de DataTable
                 //dataTable.ajax.reload();
                 //cancelarSolicitante();
+                cargarDatos();
                 Swal.fire(
                     {
                         icon:"info",
@@ -183,26 +187,50 @@ function guardarRestaurante(event) {
     
 }
 
-//Funcion para poder generar el mapa de la API de Google Maps
-async function initMap() {
+//Funcion para poder generar el mapa resumen de la API de Google Maps
+async function initMap(restaurantes) {
+    //Lozalizacion predeterminada
+    const position = { lat: 13.983161777771164, lng: -89.54772914095115 };
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
-  
+    //const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
+    
     map = new Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8,
+      center: position,
+      zoom: 10
     });
-  }
 
- /* function editarSolicitante(id) {
+    restaurantes.forEach((item) =>{
+        const position = { lat: parseFloat(item.latitud), lng: parseFloat(item.longitud)};
+        const marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: item.nombre_restaurante
+        });
+        markers.push(marker);
+    });
+    
+    
+
+
+    
+    
+
+}
+
+
+function editarRestaurante(id) {
+    hideMarkers();
     panelDatos.classList.add("d-none");
     panelForm.classList.remove("d-none");
     limpiarForm(1);
-    API.get("restaurantea/getOneRestaurante?id="+id).then(
+    API.get("restaurantes/getOneRestaurante?id="+id).then(
         data=>{
             //console.log(data);
             if (data.success) {
                 mostrarDatosForm(data.records[0]);
+                //Mostrar solo el marcado para el restaurante a editar
+                mostrarMarcadorUnico(data.records[0]);
             }else{
                 Swal.fire({
                     icon:"error",
@@ -219,18 +247,97 @@ async function initMap() {
 }
 
 
-function mostrarDatosForm(record) {
-    const {id_solicitante,nombre_solicitante,telefono_solicitante1,telefono_solicitante2,departamento,municipio,email_solicitante1,email_solicitante2}=record;
-    document.querySelector("#id_solicitante").value=id_solicitante;
-    document.querySelector("#nombre").value=nombre_solicitante;
-    document.querySelector("#telefono1").value=telefono_solicitante1;
-    document.querySelector("#telefono2").value=telefono_solicitante2;
-    document.querySelector("#departamento").value=departamento;
-    document.querySelector("#municipio").value=municipio;
-    document.querySelector("#correo1").value=email_solicitante1;
-    document.querySelector("#correo2").value=email_solicitante2;
-}*/
+function mostrarMarcadorUnico(record) {
 
+
+    const position = { lat: parseFloat(record.latitud), lng: parseFloat(record.longitud) };
+
+    // Crear y mostrar el marcador del restaurante seleccionado
+    const marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        draggable:true,
+        title: record.nombre_restaurante
+    });
+
+    map.setCenter(position);
+
+    // Listener para el evento de arrastrar el marcador
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+    // Obtener las nuevas coordenadas del marcador
+    const newLat = event.latLng.lat();
+    const newLng = event.latLng.lng();
+
+    // Actualizar los valores de los cuadros de texto
+    document.getElementById("latitud").value = newLat;
+    document.getElementById("longitud").value = newLng;
+    });
+}
+
+
+
+  
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(map);
+    }
+  }
+
+// Removes the markers from the map, but keeps them in the array.
+function hideMarkers() {
+    setMapOnAll(null);
+  }
+  
+  
+  
+
+  
+
+
+function mostrarDatosForm(record) {
+    const {idrestaurante,nombre_restaurante,direccion,telefono,contacto,foto,fecha_ingreso,latitud,longitud}=record;
+    document.querySelector("#idrestaurante").value=idrestaurante;
+    document.querySelector("#nombre").value=nombre_restaurante;
+    document.querySelector("#telefono").value=telefono;
+    document.querySelector("#contacto").value=contacto;
+    document.querySelector("#fechaIngreso").value=fecha_ingreso;
+    document.querySelector("#latitud").value=latitud;
+    document.querySelector("#longitud").value=longitud;
+    divFoto.innerHTML=`<img src="${foto}" class="h-100 w-100 style="object-fit:contain;">`;
+}
+
+function eliminarRestaurante(id) {
+    Swal.fire({
+        title:"¿Estás seguro de eliminar el registro?",
+        showDenyButton:true,
+        confirmButtonText:"Si",
+        denyButtonText:"No"
+    }).then(
+        resultado=>{
+            //console.log(resultado);
+            if (resultado.isConfirmed) {
+                API.get("restaurantes/deleteRestaurante?id="+id).then(
+                    data=>{
+                        if (data.success) {
+                            cancelarRestaurante();
+                        }else{
+                            Swal.fire({
+                                icon:"error",
+                                title:"Error",
+                                text:data.msg
+                            });
+                        }
+                    }
+                ).catch(
+                    error=>{
+                        console.log("Error:",error);
+                    }
+                );
+            }
+        }
+    );
+ }
 
   
   
