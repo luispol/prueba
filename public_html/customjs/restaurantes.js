@@ -3,8 +3,9 @@ const btnNew=document.querySelector("#btnAgregar");
 const panelDatos=document.querySelector("#contentList");
 const panelForm=document.querySelector("#contentForm");
 const btnCancelar=document.querySelector("#btnCancelar");
-const formSolicitantes=document.querySelector("#formRestaurantes")
-const tableContent=document.querySelector("#contentTable table tbody")
+const formRestaurantes=document.querySelector("#formRestaurantes");
+const formIngredientes=document.querySelector("#formIngredientes")
+const tableContent=document.querySelector("#contentTable table tbody");
 const divFoto=document.querySelector("#divFoto");
 const inputFoto=document.querySelector("#foto");
 const API = new Api();
@@ -23,14 +24,15 @@ function eventListeners() {
     document.addEventListener("DOMContentLoaded",cargarDatos);
     divFoto.addEventListener("click",agregarFoto);
     inputFoto.addEventListener("change",actualizarFoto);
-    formSolicitantes.addEventListener("submit",guardarRestaurante);
+    formRestaurantes.addEventListener("submit",guardarRestaurante);
+    formIngredientes.addEventListener("submit", guardarIngredientes);
     //document.addEventListener("DOMContentLoaded",initMap);
 }
 
 //Funciones
 
 function limpiarForm(op) {
-    formSolicitantes.reset();
+    formRestaurantes.reset();
     document.querySelector("#idrestaurante").value="0";
 }
 
@@ -209,12 +211,6 @@ async function initMap(restaurantes) {
         });
         markers.push(marker);
     });
-    
-    
-
-
-    
-    
 
 }
 
