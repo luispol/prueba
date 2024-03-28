@@ -15,8 +15,6 @@ let markers = [];
 //Configuracion de eventos
 eventListeners();
 
-
-
 function eventListeners() {
     btnNew.addEventListener("click",agregarRestaurante);
     btnCancelar.addEventListener("click",cancelarRestaurante);
