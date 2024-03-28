@@ -4,7 +4,6 @@ const panelDatos=document.querySelector("#contentList");
 const panelForm=document.querySelector("#contentForm");
 const btnCancelar=document.querySelector("#btnCancelar");
 const formRestaurantes=document.querySelector("#formRestaurantes");
-//const formIngredientes=document.querySelector("#formIngredientes")
 const tableContent=document.querySelector("#contentTable table tbody");
 const divFoto=document.querySelector("#divFoto");
 const inputFoto=document.querySelector("#foto");
@@ -25,8 +24,6 @@ function eventListeners() {
     divFoto.addEventListener("click",agregarFoto);
     inputFoto.addEventListener("change",actualizarFoto);
     formRestaurantes.addEventListener("submit",guardarRestaurante);
-    //formIngredientes.addEventListener("submit", guardarIngredientes);
-    //document.addEventListener("DOMContentLoaded",initMap);
 }
 
 //Funciones
@@ -198,7 +195,7 @@ async function initMap(restaurantes) {
     const position = { lat: 13.983161777771164, lng: -89.54772914095115 };
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
-    //const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
+
     
     map = new Map(document.getElementById("map"), {
       center: position,

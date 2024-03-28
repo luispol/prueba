@@ -234,10 +234,10 @@
 
                     
                 </div>
+        <?php include_once "app/views/sections/footer.php";?>
                 
             </div>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-        <?php include_once "app/views/sections/footer.php";?>
     </div>
     <?php include_once "app/views/sections/scripts.php"?>
     <script src="<?php echo URL;?>public_html/customjs/productos.js"></script>
