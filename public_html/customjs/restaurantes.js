@@ -4,7 +4,7 @@ const panelDatos=document.querySelector("#contentList");
 const panelForm=document.querySelector("#contentForm");
 const btnCancelar=document.querySelector("#btnCancelar");
 const formRestaurantes=document.querySelector("#formRestaurantes");
-const formIngredientes=document.querySelector("#formIngredientes")
+//const formIngredientes=document.querySelector("#formIngredientes")
 const tableContent=document.querySelector("#contentTable table tbody");
 const divFoto=document.querySelector("#divFoto");
 const inputFoto=document.querySelector("#foto");
@@ -25,7 +25,7 @@ function eventListeners() {
     divFoto.addEventListener("click",agregarFoto);
     inputFoto.addEventListener("change",actualizarFoto);
     formRestaurantes.addEventListener("submit",guardarRestaurante);
-    formIngredientes.addEventListener("submit", guardarIngredientes);
+    //formIngredientes.addEventListener("submit", guardarIngredientes);
     //document.addEventListener("DOMContentLoaded",initMap);
 }
 
@@ -39,6 +39,8 @@ function limpiarForm(op) {
 function agregarRestaurante() {
     panelDatos.classList.add("d-none");
     panelForm.classList.remove("d-none");
+    hideMarkers();
+    mostrarMarcadorNuevo();
     
 }
 
@@ -149,16 +151,17 @@ function actualizarFoto(el) {
 }
 
 function guardarRestaurante(event) {
+    
     event.preventDefault();
+
     const formData=new FormData(formRestaurantes);
     API.post(formData,"restaurantes/save").then(
         data=>{
+            //hideMarkers();
             //console.log(data);
             if (data.success) {
-                // Recargar solo los datos de DataTable
-                //dataTable.ajax.reload();
-                //cancelarSolicitante();
-                cargarDatos();
+                
+                //cargarDatos();
                 Swal.fire(
                     {
                         icon:"info",
@@ -242,6 +245,30 @@ function editarRestaurante(id) {
     );
 }
 
+
+function mostrarMarcadorNuevo() {
+    const position = { lat: 13.983161777771164, lng: -89.54772914095115 };
+
+    // Crear y mostrar el marcador del restaurante seleccionado
+    const marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        draggable:true,
+    });
+
+    map.setCenter(position);
+
+    // Listener para el evento de arrastrar el marcador
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+    // Obtener las nuevas coordenadas del marcador
+    const newLat = event.latLng.lat();
+    const newLng = event.latLng.lng();
+
+    // Actualizar los valores de los cuadros de texto
+    document.getElementById("latitud").value = newLat;
+    document.getElementById("longitud").value = newLng;
+    });
+}
 
 function mostrarMarcadorUnico(record) {
 

@@ -243,7 +243,6 @@ function cargarRestaurantes() {
         if (data.success) {
             const idproducto = data.idproducto;
             console.log(idproducto);
-          //console.log("Log en guardar compra: " + data.idproducto);
           document.querySelector("#idproducto_ingrediente").value = idproducto
         }
       })
